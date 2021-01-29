@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['doggle.py'],
-             pathex=['K:\\doggle'],
+             pathex=['K:\\rdpdoggle_source'],
              binaries=[],
              datas=[],
              hiddenimports=[],

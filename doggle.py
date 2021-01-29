@@ -4,20 +4,23 @@ import random
 import string
 import getpass
 
-os.system("title RDP 加密狗 v1.1.0 Preview")
-print("RDP 加密狗 v1.1.0.00T70800202.1 Preview\nRDP Doggle v1.1.0.00T70800202.1 Preview\n版权所有 RDPStudio 2019-2021。保留所有权利。\n")
+os.system("title RDP 加密狗 v1.1.1 Preview")
+print("RDP 加密狗 v1.1.1.06K70800202.1 Preview\nRDP Doggle v1.1.1.06K70800202.1 Preview\n版权所有 RDPStudio 2019-2021。保留所有权利。\n")
 
 print("让您的U盘或移动硬盘成为您的计算机的唯一凭证。")
 print("让您的U盘或移动硬盘成为您的计算机的“钥匙”，")
 print("如果没有这把“钥匙”，您的计算机就会 爆 掉 ！\n")
 
-print("/--------------------开始初始化--------------------/\n正在检测加密狗服务是否开启...")
-if(os.path.exists("C:\\Users\\"+getpass.getuser()+"\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\rdpdoggleprocess.exe")==True):
-    print("检测成功：已开启")
-    check=True
-else:
-    print("检测成功：未开启")
+print("/--------------------开始初始化--------------------/")
+check_first=str(input("0/3:\n选择模式：\n1：安装。\n2：卸载。\n>> "))
+if(check_first!="1" and check_first!="2"):
+    print("\n发生了一个致命的错误：输入不合法。\n错误：向导0/3\n")
+    os.system("pause")
+    sys.exit()
+if(check_first == "1"):
     check=False
+else:
+    check=True
 print("/--------------------结束初始化--------------------/")
 
 if(check==False):
@@ -42,8 +45,8 @@ if(check==False):
         print("\n发生了一个致命的错误：输入不合法。\n错误：向导2/3\n")
         os.system("pause")
         sys.exit()
-    boom=str(input("\n3/3:\n选择“爆掉”的动作：\n1：锁定\n2：关机\n3：注销\n>> "))
-    if((mode!="1" and mode!="2") and mode!=3):
+    boom=str(input("\n3/3:\n选择“爆掉”的动作：\n1：锁定\n2：关机\n3：注销\n4：蓝屏\n>> "))
+    if(int(boom)<0 or int(boom)>4):
         print("\n发生了一个致命的错误：输入不合法。\n错误：向导3/3\n")
         os.system("pause")
         sys.exit()
@@ -70,11 +73,13 @@ if(check==False):
     if(boom=="1"):file.write("rundll32.exe user32.dll LockWorkStation\n")
     if(boom=="2"):file.write("shutdown -s -t 0\n")
     if(boom=="3"):file.write("logoff\n")
+    if(boom=="4"):file.write("start cmd /c \\\\.\\globalroot\\device\\condrv\\kernelconnect\n")
     file.write("for /f "+chr(34)+"delims="+chr(34)+" "+chr(37)+chr(37)+"a in ('type "+chr(34)+pa+"verifyfile.rdpdoggle"+chr(34)+"') do set a="+chr(37)+chr(37)+"a\n")
     file.write("if not "+chr(37)+"a"+chr(37)+"=="+vert+" ")
     if(boom=="1"):file.write("rundll32.exe user32.dll LockWorkStation\n")
     if(boom=="2"):file.write("shutdown -s -t 0\n")
     if(boom=="3"):file.write("logoff\n")
+    if(boom=="4"):file.write("start cmd /c \\\\.\\globalroot\\device\\condrv\\kernelconnect\n")
     if(mode=="2"):file.write("timeout /t 1\ngoto start\n")
     file.write("exit\n")
     file.close()
@@ -82,7 +87,7 @@ if(check==False):
     print("编写代码已完成。")
 
     print("正在编译代码至可执行文件...")
-    os.system(".\\Convert\\Bat_To_Exe_Converter.exe /bat .\\temp.bat /exe .\\rdpdoggleprocess.exe /invisible /x64")
+    os.system(".\\Bat_To_Exe_Converter.exe /bat .\\temp.bat /exe .\\rdpdoggleprocess.exe /invisible /x64")
     os.system("del temp.bat")
     print("\n编译代码至可执行文件已完成。")
 
